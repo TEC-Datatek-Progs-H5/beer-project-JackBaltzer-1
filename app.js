@@ -8,20 +8,32 @@ app.use(logger('dev', {
   skip: req => !req.url.endsWith(".html") && req.url.indexOf(".") > -1
 }));
 
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
 
 
 
 app.get('/', (req, res) => {
-  res.send('<h1>Hello World, it\'s sunny!!!!!</h1>');
+  res.render('index',{
+    title:'Beer Site',
+    message: '<i>Beer</i>'
+  });
 });
 
 app.get('/admin/beer', (req, res) => {
-  res.send('<h1>Hello World, it\'s sunny!!!!!</h1>');
+  res.render('index',{
+    title:'Beer Site'
+  });
 });
+
+
+
+app.use(express.static('public'));
+
 
 
 app.listen(port, (err) => {
   if (err) console.log(err);
   console.log('Serveren kører! http://localhost:' + port);
-
 });
