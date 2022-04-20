@@ -17,38 +17,14 @@ app.use(bodyParser.json());
 
 app.locals.title = "beer";
 
-app.get('/', (req, res) => {
-  res.render('index', {
-    message: '<i>Beer</i>',
-    data: [1, 2, 3, 4, 5, 6, 7]
-  });
-});
+const mongoose = require("mongoose");
+// starter mongoDb og opretter forbindelsen til databasen, 
+// også selv om variablen 'db' ikke benyttes
+const db = mongoose.connect("mongodb://localhost:27017/ServersideScripting_2022_Q2");
 
-
-app.post('/', (req, res) => {
-  console.log(req.body);
-  
-  res.render('index', {
-    message: '<i>Beer</i>',
-    data: [1, 2, 3, 4, 5, 6, 7],
-    beer: req.body
-  });
-});
-
-
-
-
-app.get('/admin/beer', (req, res) => {
-  res.render('index', {
-    title: 'Beer Site'
-  });
-});
-
-
+require('./routes.js')(app);
 
 app.use(express.static('public'));
-
-
 
 app.listen(port, (err) => {
   if (err) console.log(err);

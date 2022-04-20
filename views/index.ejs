@@ -12,32 +12,26 @@
 <body>
   <%- include('partials/nav.ejs') %>
 
-  <h1><%- typeof message != 'undefined' ? message : ''  %></h1>
-  <%- locals.message ? message : '' %>
 
-
-  <h1>Øl</h1>
-  <p>styrke</p>
-  <p>farve</p>
-  <p>Årgang</p>
-
-
-  <% if(locals.data){  %>
-
-    <% data.forEach( item => { %>
-
-      <h2><%= item %></h2>
-
-    <% }) %>
-
-  <%} %> 
+  <% if(locals.beers){ %>
+    <% beers.forEach(beer=>{ %>
+      <h1><%= beer.name %></h1>
+      <p><%= beer.type %></p>
+      <p><%= beer.color %></p>
+   <% }) %>
+ <% } %>
 
 
 
-      <form method="post">
-        Navn <input name="beerName" type="text" value="<%= locals.beer ? beer.beerName : '' %>">
-        <button>Gem</button>
-      </form>
+  <form method="post">
+    Navn <input name="beerName" type="text" value="<%= locals.beer ? beer.beerName : '' %>">
+    <br>
+    Type <input name="beerType" type="text" value="<%= locals.beer ? beer.beerType : '' %>">
+    <br>
+    Farve <input name="color" type="text" value="<%= locals.beer ? beer.color : '' %>">
+    <br>
+    <button>Gem</button>
+  </form><%- locals.message ? message : '' %>
 
 
 

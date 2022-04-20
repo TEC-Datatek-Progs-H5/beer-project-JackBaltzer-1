@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <%- include('partials/nav.ejs') %>
+
+
+  <form method="post">
+    Navn <input name="name" type="text" value="<%= locals.beer ? beer.name : '' %>">
+    <br>
+    Type <input name="type" type="text" value="<%= locals.beer ? beer.type : '' %>">
+    <br>
+    Farve <input name="color" type="text" value="<%= locals.beer ? beer.color : '' %>">
+    <br>
+    <button>Gem</button>
+  </form><%- locals.message ? message : '' %>
+
+
+
+  <% if(locals.beers){ %>
+    <table>
+      <tr>
+        <th>actions</th>
+        <th>id</th>
+        <th>navn</th>
+        <th>farve</th>
+      </tr>
+       <% beers.forEach(beer=>{ %>
+        <tr>
+          <td>
+              <a href="/admin/beer/edit/<%= beer._id %>">[ret]</a>
+              <a href="/admin/beer/delete/<%= beer._id %>">[slet]</a>
+          </td>
+          <td><%= beer._id %></td>
+          <td><%= beer.name %></td>
+          <td><%= beer.color %></td>
+        </tr>
+        <% }) %>
+      </table>
+  <% } %>
+
+
+
+
+
+
+
+</body>
+
+</html>
