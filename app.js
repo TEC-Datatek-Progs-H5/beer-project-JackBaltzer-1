@@ -11,19 +11,36 @@ app.use(logger('dev', {
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-
+app.locals.title = "beer";
 
 app.get('/', (req, res) => {
-  res.render('index',{
-    title:'Beer Site',
-    message: '<i>Beer</i>'
+  res.render('index', {
+    message: '<i>Beer</i>',
+    data: [1, 2, 3, 4, 5, 6, 7]
   });
 });
 
+
+app.post('/', (req, res) => {
+  console.log(req.body);
+  
+  res.render('index', {
+    message: '<i>Beer</i>',
+    data: [1, 2, 3, 4, 5, 6, 7],
+    beer: req.body
+  });
+});
+
+
+
+
 app.get('/admin/beer', (req, res) => {
-  res.render('index',{
-    title:'Beer Site'
+  res.render('index', {
+    title: 'Beer Site'
   });
 });
 

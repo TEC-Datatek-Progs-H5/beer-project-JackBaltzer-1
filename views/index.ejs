@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%=  typeof title != 'undefined' ? title : '' %></title>
+  <title><%= title %></title>
   <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -13,7 +13,35 @@
   <%- include('partials/nav.ejs') %>
 
   <h1><%- typeof message != 'undefined' ? message : ''  %></h1>
-  <%-  locals.message ? message : '' %>
+  <%- locals.message ? message : '' %>
+
+
+  <h1>Øl</h1>
+  <p>styrke</p>
+  <p>farve</p>
+  <p>Årgang</p>
+
+
+  <% if(locals.data){  %>
+
+    <% data.forEach( item => { %>
+
+      <h2><%= item %></h2>
+
+    <% }) %>
+
+  <%} %> 
+
+
+
+      <form method="post">
+        Navn <input name="beerName" type="text" value="<%= locals.beer ? beer.beerName : '' %>">
+        <button>Gem</button>
+      </form>
+
+
+
+
 
 </body>
 

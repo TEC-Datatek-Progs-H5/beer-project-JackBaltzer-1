@@ -1,8 +1,15 @@
-body{
-  background:url('/images/photo-glass-of-cold-fresh-beer.webp')  #000;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  background: url('/images/photo-glass-of-cold-fresh-beer.webp') #000;
   background-attachment: fixed;
   background-position: bottom right;
   background-repeat: no-repeat;
-  background-size:33%;
-  color:#fff;
+  background-size: 33%;
+  color: #fff;
+}
+
+
+nav a {
+  color: burlywood;
 }
