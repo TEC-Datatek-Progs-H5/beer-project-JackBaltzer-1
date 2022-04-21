@@ -12,30 +12,16 @@
 <body>
   <%- include('partials/nav.ejs') %>
 
-
   <% if(locals.beers){ %>
+  <div class="beers">
     <% beers.forEach(beer=>{ %>
+    <div class="beer">
       <h1><%= beer.name %></h1>
-      <p><%= beer.type %></p>
-      <p><%= beer.color %></p>
-   <% }) %>
- <% } %>
-
-
-
-  <form method="post">
-    Navn <input name="beerName" type="text" value="<%= locals.beer ? beer.beerName : '' %>">
-    <br>
-    Type <input name="beerType" type="text" value="<%= locals.beer ? beer.beerType : '' %>">
-    <br>
-    Farve <input name="color" type="text" value="<%= locals.beer ? beer.color : '' %>">
-    <br>
-    <button>Gem</button>
-  </form><%- locals.message ? message : '' %>
-
-
-
-
+      <p><%= beer.type %>, <%= beer.color %></p>
+    </div>
+    <% }) %>
+  </div>
+  <% } %>
 
 </body>
 

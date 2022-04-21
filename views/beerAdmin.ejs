@@ -12,46 +12,59 @@
 <body>
   <%- include('partials/nav.ejs') %>
 
+  <form method="post" class="form">
+    <div>
+      <label for="name">Navn:</label>
+      <input name="name" type="text" value="<%= locals.beer ? beer.name : '' %>">
+    </div>
 
-  <form method="post">
-    Navn <input name="name" type="text" value="<%= locals.beer ? beer.name : '' %>">
-    <br>
-    Type <input name="type" type="text" value="<%= locals.beer ? beer.type : '' %>">
-    <br>
-    Farve <input name="color" type="text" value="<%= locals.beer ? beer.color : '' %>">
-    <br>
-    <button>Gem</button>
-  </form><%- locals.message ? message : '' %>
+    <div>
+      <label for="type">Type:</label>
+      <input name="type" type="text" value="<%= locals.beer ? beer.type : '' %>">
+    </div>
 
+    <div>
+      <label for="color">Farve</label>
+      <input name="color" type="text" value="<%= locals.beer ? beer.color : '' %>">
+    </div>
+
+    <div>
+      <label for="year">År:</label>
+      <select name="year">
+        <option value="0">Vælg År</option>
+        <% for(let i = 2022; i >= 1970; i--){ %>
+          <option <%= locals.beer && beer.year == i ? 'selected' : '' %> value="<%= i %>"       ><%= i %></option>
+        <% } %> 
+      </select>
+    </div>
+
+    <button class="btn">Gem</button>
+    <a href="/admin/beer" class="btn">Annuller</a>
+    <%- locals.message ? '<span class="error">'+ message +'</span>' : '' %>
+  </form>
 
 
   <% if(locals.beers){ %>
-    <table>
-      <tr>
-        <th>actions</th>
-        <th>id</th>
-        <th>navn</th>
-        <th>farve</th>
-      </tr>
-       <% beers.forEach(beer=>{ %>
-        <tr>
-          <td>
-              <a href="/admin/beer/edit/<%= beer._id %>">[ret]</a>
-              <a href="/admin/beer/delete/<%= beer._id %>">[slet]</a>
-          </td>
-          <td><%= beer._id %></td>
-          <td><%= beer.name %></td>
-          <td><%= beer.color %></td>
-        </tr>
-        <% }) %>
-      </table>
+  <table>
+    <tr>
+      <th>actions</th>
+      <th>id</th>
+      <th>navn</th>
+      <th>farve</th>
+    </tr>
+    <% beers.forEach(beer=>{ %>
+    <tr>
+      <td>
+        <a href="/admin/beer/edit/<%= beer._id %>" class="btn">Ret</a>
+        <a onclick="return confirm('Er du sikker?')" href="/admin/beer/delete/<%= beer._id %>" class="btn">Slet</a>
+      </td>
+      <td><%= beer._id %></td>
+      <td><%= beer.name %></td>
+      <td><%= beer.color %></td>
+    </tr>
+    <% }) %>
+  </table>
   <% } %>
-
-
-
-
-
-
 
 </body>
 

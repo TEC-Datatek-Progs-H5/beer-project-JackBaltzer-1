@@ -13,3 +13,40 @@ body {
 nav a {
   color: burlywood;
 }
+
+.beers {
+  width: 80%;
+  display: flex;
+}
+
+.beer {
+  width: 33%;
+  border: solid 1px #fff;
+  padding: 5px;
+  margin: 10px;
+}
+
+.form {
+  margin: 10px 0;
+}
+
+form label {
+  width: 100px;
+  display: inline-block;
+}
+
+.error {
+  color: #ff5500;
+}
+
+.btn {
+  border: solid 1px #aaa;
+  background: #333;
+  color: #fff;
+  padding: 2px 5px;
+  margin: 2px;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 13px;
+}
