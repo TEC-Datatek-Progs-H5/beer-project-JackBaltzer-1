@@ -12,7 +12,7 @@
 <body>
   <%- include('partials/nav.ejs') %>
 
-  <form method="post" class="form">
+  <form method="post" class="form" enctype="multipart/form-data" >
     <div>
       <label for="name">Navn:</label>
       <input name="name" type="text" value="<%= locals.beer ? beer.name : '' %>">
@@ -29,16 +29,27 @@
     </div>
 
     <div>
+      <label for="image">Billede</label>
+      <input name="billedesNavn" type="file">
+
+
+
+      <% if(locals.beer && beer.image != null){  %>
+      <img class="img-preview" src="/images/<%= beer.image %>">
+      <% } %>
+    </div>
+
+    <div>
       <label for="year">År:</label>
       <select name="year">
         <option value="0">Vælg År</option>
         <% for(let i = 2022; i >= 1970; i--){ %>
-          <option <%= locals.beer && beer.year == i ? 'selected' : '' %> value="<%= i %>"       ><%= i %></option>
-        <% } %> 
+        <option <%= locals.beer && beer.year == i ? 'selected' : '' %> value="<%= i %>"><%= i %></option>
+        <% } %>
       </select>
     </div>
 
-    <button class="btn">Gem</button>
+    <button class="btn save">Gem</button>
     <a href="/admin/beer" class="btn">Annuller</a>
     <%- locals.message ? '<span class="error">'+ message +'</span>' : '' %>
   </form>
@@ -51,16 +62,19 @@
       <th>id</th>
       <th>navn</th>
       <th>farve</th>
+      <th>type</th>
     </tr>
     <% beers.forEach(beer=>{ %>
     <tr>
       <td>
-        <a href="/admin/beer/edit/<%= beer._id %>" class="btn">Ret</a>
-        <a onclick="return confirm('Er du sikker?')" href="/admin/beer/delete/<%= beer._id %>" class="btn">Slet</a>
+        <a href="/admin/beer/edit/<%= beer._id %>" class="btn edit">Ret</a>
+        <a onclick="return confirm('Er du sikker?')" href="/admin/beer/delete/<%= beer._id %>"
+          class="btn delete">Slet</a>
       </td>
       <td><%= beer._id %></td>
       <td><%= beer.name %></td>
       <td><%= beer.color %></td>
+      <td><%= beer.type %></td>
     </tr>
     <% }) %>
   </table>

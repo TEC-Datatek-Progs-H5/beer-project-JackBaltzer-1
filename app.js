@@ -22,6 +22,13 @@ const mongoose = require("mongoose");
 // også selv om variablen 'db' ikke benyttes
 const db = mongoose.connect("mongodb://localhost:27017/ServersideScripting_2022_Q2");
 
+const fileupload = require('express-fileupload');
+app.use(fileupload({
+   limits: {
+      fileSize: 10 * 1024 * 1024
+   } // 10mb
+}));
+
 require('./routes.js')(app);
 
 app.use(express.static('public'));

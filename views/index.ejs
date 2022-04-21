@@ -18,6 +18,9 @@
     <div class="beer">
       <h1><%= beer.name %></h1>
       <p><%= beer.type %>, <%= beer.color %></p>
+      <% if(beer.image) { %>
+      <img src="/images/<%= beer.image %>">
+      <% }%>
     </div>
     <% }) %>
   </div>
